@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- 1. PARENT: Defines the Spring Boot Version (Controls Java libraries) -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <!-- Use a recent, actively supported version to avoid runtime warnings -->
+        <version>3.4.0</version> 
+        <relativePath/> 
+    </parent>
+
+    <groupId>com.example</groupId>
+    <artifactId>banking-bms</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>BankApplication</name>
+    <description>Banking Management System with Spring Transactions</description>
+
+    <properties>
+        <!-- Specify Java version (must match your installed JDK) -->
+        <java.version>17</java.version> 
+        
+        <!-- Maven Compiler Properties for Compatibility -->
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        
+        <!-- Explicitly setting plugin versions for robustness with specific Maven versions -->
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
+    </properties>
+
+    <!-- 2. DEPENDENCIES: The libraries required by the project -->
+    <dependencies>
+        <!-- Core Spring Boot Web Starter (REST API, Tomcat) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- JDBC Integration and Transaction Support -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+        </dependency>
+
+        <!-- H2 Database (In-Memory Database) -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <!-- 3. BUILD: Defines how Maven handles compiling and running -->
+    <build>
+        <plugins>
+            <!-- Compiler Plugin: Ensures the code is compiled correctly for the JVM -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            
+            <!-- Spring Boot Plugin: To package and run the application easily -->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
